@@ -1,0 +1,23 @@
+.nav-list {
+  .list-unstyled();
+  display: flex;
+}
+
+.nav-list__link {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+}
+
+.nav-list__text {
+  display: none;
+}
+
+@media (min-width: @tablet-width) {
+  .nav-list__text {
+    font-size: 13px;
+    line-height: 16px;
+    display: inline-block;
+    margin-left: 10px;
+  }
+}

@@ -1,0 +1,36 @@
+.form-subscribe {
+  display: flex;
+  align-items: center;
+}
+
+.form-subscribe__button {
+  display: block;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.form-subscribe__email {
+  display: block;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, .4);
+  width: 200px;
+}
+
+.form-subscribe__email::placeholder {
+  color: #ffffff;
+}
+
+@media (min-width: @tablet-width) {
+  .form-subscribe__email {
+    width: 600px;
+  }
+}
+
+@media (min-width: @desktop-width) {
+  .form-subscribe__email {
+    width: 400px;
+  }
+}
