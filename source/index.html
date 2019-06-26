@@ -202,7 +202,7 @@
             </div>
           </div>
           <div class="sub-section__part">
-            <div class="card">
+            <div class="card card--no-margin">
               <div class="card__header">
                 <picture class="card__picture">
                   <source media="(min-width: 1200px)" srcset="img/card-tochmash-desktop@1x.jpg 1x, img/card-tochmash-desktop@2x.jpg 2x, img/card-tochmash-desktop@3x.jpg 3x">
@@ -227,7 +227,10 @@
             </span>
             <span class="sub-section__nav-text sub-section__nav-text--more">Посмотреть еще</span>
           </p>
-          <p class="sub-section__nav-part sub-section__nav-text sub-section__nav-text--pages">2 из 3</p>
+          <p class="sub-section__nav-part sub-section__nav-text">
+            <span class="sub-section__nav-text sub-section__nav-text--shown">Показано</span>
+            <span class="sub-section__nav-text sub-section__nav-text--pages">2 из 7</span>
+          </p>
         </div>
       </section>
 
@@ -250,7 +253,7 @@
             </div>
           </div>
           <div class="sub-section__part">
-            <div class="card">
+            <div class="card card--no-margin">
               <div class="card__header">
                 <picture class="card__picture">
                   <source media="(min-width: 1200px)" srcset="img/card-tig-desktop@1x.jpg 1x, img/card-tig-desktop@2x.jpg 2x, img/card-tig-desktop@3x.jpg 3x">
@@ -288,7 +291,7 @@
         <div class="footer__wrapper">
           <div class="footer__block">
             <div class="social">
-              <p class="social__text>">Мы в социальных сетях</p>
+              <p class="social__text">Мы в социальных сетях</p>
               <p class="social__icons">
                 <span class="social_icon">
                   <svg width="32" height="32">
@@ -306,13 +309,13 @@
                   </svg>
 
                 </span>
-              <p>
+              </p>
             </div>
 
             <address class="address">
               <p class="address__text">Москва, Краснопресненская наб., д. 12</p>
-              <p><a class="address__email address__text" href="mailto:info@myrussia.ru">info@myrussia.ru</a></p>
-              <p><a class="address_tel address__text" href="tel:+7 (495) 333 91 12">+7 (495) 333 91 12</a></p>
+              <p class="address__text"><a class="address__email" href="mailto:info@myrussia.ru">info@myrussia.ru</a></p>
+              <p class="address__text"><a class="address_tel" href="tel:+7 (495) 333 91 12">+7 (495) 333 91 12</a></p>
             </address>
           </div>
 
@@ -348,7 +351,15 @@
 
         <div class="footer__copyright copyright">
           <p class="copyright__text">Copyright</p>
-          <p class="copyright__text copyright__text--indent">© Ассоциация «Моя Россия»</p>
+          <p class="copyright__text-and-icon copyright__text--indent">
+            <span class="copyright__text-and-icon-block copyright__text">© Ассоциация «Моя Россия»</span>
+            <span class="copyright__text-and-icon-block">
+              <svg width="28" height="26">
+                <use xlink:href="#ico-plus"></use>
+              </svg>
+
+            </span>
+          </p>
 
         </div>
 

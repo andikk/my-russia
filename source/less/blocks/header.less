@@ -10,6 +10,7 @@
   display: flex;
   justify-content: space-between;
   margin-top: 16px;
+  margin-bottom: 22px;
 }
 
 .header__body {
@@ -31,11 +32,8 @@
   @media (min-resolution: @retina-dpi), (min-resolution: @retina-dppx) {
     background-image: url("../img/banner-mobile@2x.jpg");
   }
-}
 
-.header__nav {
-  display: flex;
-  align-items: center;
+  margin-bottom: 32px;
 }
 
 .header__logo-text {
@@ -53,9 +51,21 @@
   }
 }
 
+.header__nav {
+  display: flex;
+  align-items: center;
+  margin-top: 0;
+  margin-bottom: 24px;
+}
+
+.header__icon-nav {
+  display: block;
+}
+
 .header__text-nav {
+  display: block;
   text-transform: uppercase;
-  margin-left: 20px;
+  margin-left: 10px;
   color: #94b0be;
   font-size: 14px;
   line-height: 24px;
@@ -71,6 +81,8 @@
   font-weight: bold;
   font-size: 24px;
   line-height: 28px;
+  margin-top: 0;
+  margin-bottom: 24px;
 }
 
 @media (min-width: @tablet-width) {

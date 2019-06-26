@@ -1,6 +1,7 @@
 .sub-section__nav {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 48px;
 }
 
 .sub-section__nav-text {
@@ -10,6 +11,10 @@
   margin-top: 20px;
   margin-bottom: 0;
   color: #0d87c8;
+}
+
+.sub-section__nav-text--shown {
+  display: none;
 }
 
 @media (min-width: @tablet-width) {
@@ -27,6 +32,10 @@
   	font-size: 16px;
   }
 
+  .sub-section__nav-text--shown {
+    display: inline;
+  }
+
   .sub-section__part {
     width: 50%;
   }
@@ -40,6 +49,6 @@
   .sub-section__subtitle {
     font-size: 18px;
     line-height: 32px;
-  }	
+  }
 }
 
