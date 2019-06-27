@@ -17,15 +17,29 @@
   margin-bottom: 0;
 }
 
+.copyright__text--indent {
+  margin-bottom: 0;
+  padding-bottom: 20px;
+}
+
 
 @media (min-width: @tablet-width) {
-
   .copyright {
     display: flex;
   }
 
-  .copyright__text--indent {
-    margin-left: 50px;
+  .copyright__text-and-icon {
+    margin-bottom: 0;
+
+    & svg {
+      margin-left: 30px;
+    }
   }
+
+  .copyright__text--indent {
+    margin-left: 8px;
+    margin-top: -2px;
+  }
+
 
 }
