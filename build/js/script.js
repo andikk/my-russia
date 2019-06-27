@@ -119,31 +119,24 @@ btn.addEventListener('click', function() {
 });
 // КОНЕЦ БЛОКА для отображения карточек
 
+// НАЧАЛО БЛОКА для подсветки разделов
 var links = document.querySelectorAll(".left-nav-list__link");
-
 for (var i = 0; i <= links.length - 1; i++ ) {
-
   links[i].addEventListener('click', function () {
-
-     for (j = 0; j <= links.length - 1; j++) {
-       links[j].classList.remove('left-nav-list__link--active');
-     }
-
-    this.classList.add('left-nav-list__link--active');
-
+    window.onscroll();
   });
 }
 
 window.onscroll = function() {
   var scrolled = window.pageYOffset;
 
-  if (scrolled > 0 && scrolled < 1747) {
+  if (scrolled >= 0 && scrolled < 1747) {
     links[0].classList.add('left-nav-list__link--active');
   } else {
     links[0].classList.remove('left-nav-list__link--active');
   }
 
-  if (scrolled > 1747 && scrolled < 2531) {
+  if (scrolled > 1740 && scrolled < 2531) {
     links[1].classList.add('left-nav-list__link--active');
   } else {
     links[1].classList.remove('left-nav-list__link--active');
@@ -155,3 +148,4 @@ window.onscroll = function() {
     links[2].classList.remove('left-nav-list__link--active');
   }
 }
+// КОНЕЦ БЛОКА для подсветки разделов

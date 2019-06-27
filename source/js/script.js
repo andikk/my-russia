@@ -130,7 +130,7 @@ for (var i = 0; i <= links.length - 1; i++ ) {
 window.onscroll = function() {
   var scrolled = window.pageYOffset;
 
-  if (scrolled > 0 && scrolled < 1747) {
+  if (scrolled >= 0 && scrolled < 1747) {
     links[0].classList.add('left-nav-list__link--active');
   } else {
     links[0].classList.remove('left-nav-list__link--active');
