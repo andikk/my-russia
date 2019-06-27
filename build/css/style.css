@@ -448,11 +448,15 @@ input[type="radio"].visually-hidden {
   .sidebar {
     display: block;
     width: 35%;
+    position: relative;
   }
 }
 @media (min-width: 1440px) {
   .left-nav {
     padding-right: 144px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
   }
   .left-nav-list {
     list-style: none;
