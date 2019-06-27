@@ -9,7 +9,6 @@ var tooglerText = toogler.querySelector('.toogler__text');
 var tooglerIcon = toogler.querySelector('.toogler__icon img');
 
 toogler.addEventListener('click', function() {
-  console.log(detailsShown);
   detailsShown=!detailsShown;
 
   if (detailsShown) {
@@ -119,3 +118,40 @@ btn.addEventListener('click', function() {
   }
 });
 // КОНЕЦ БЛОКА для отображения карточек
+
+var links = document.querySelectorAll(".left-nav-list__link");
+
+for (var i = 0; i <= links.length - 1; i++ ) {
+
+  links[i].addEventListener('click', function () {
+
+     for (j = 0; j <= links.length - 1; j++) {
+       links[j].classList.remove('left-nav-list__link--active');
+     }
+
+    this.classList.add('left-nav-list__link--active');
+
+  });
+}
+
+window.onscroll = function() {
+  var scrolled = window.pageYOffset;
+
+  if (scrolled > 0 && scrolled < 1747) {
+    links[0].classList.add('left-nav-list__link--active');
+  } else {
+    links[0].classList.remove('left-nav-list__link--active');
+  }
+
+  if (scrolled > 1747 && scrolled < 2531) {
+    links[1].classList.add('left-nav-list__link--active');
+  } else {
+    links[1].classList.remove('left-nav-list__link--active');
+  }
+
+  if (scrolled >= 2531) {
+    links[2].classList.add('left-nav-list__link--active');
+  } else {
+    links[2].classList.remove('left-nav-list__link--active');
+  }
+}
