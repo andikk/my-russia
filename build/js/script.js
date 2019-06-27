@@ -1,32 +1,40 @@
 // НАЧАЛО БЛОКА для отображения и скрытия деталий
 var detailsShown = false;
 
-var details = document.querySelector("#details");
-var detailsSpan = document.querySelector("#details-span");
+var details = document.querySelector('#details');
+var detailsSpan = document.querySelector('#details-span');
 
-var toogler = document.querySelector(".toogler");
-var tooglerText = toogler.querySelector(".toogler__text");
-var tooglerIcon = toogler.querySelector(".toogler__icon img");
+var toogler = document.querySelector('.toogler');
+var tooglerText = toogler.querySelector('.toogler__text');
+var tooglerIcon = toogler.querySelector('.toogler__icon img');
 
-toogler.addEventListener("click", function() {
+toogler.addEventListener('click', function() {
   console.log(detailsShown);
   detailsShown=!detailsShown;
 
   if (detailsShown) {
-    details.style.display = "block";
-    detailsSpan.style.display = "inline";
-    tooglerText.textContent = "Скрыть";
-    tooglerIcon.src = "img/ico-arrow-up.png";
+    details.style.display = 'block';
+    detailsSpan.style.display = 'inline';
+    tooglerText.textContent = 'Скрыть';
+    tooglerIcon.src = 'img/ico-arrow-up.png';
 
   } else {
-    details.style.display = "none";
-    detailsSpan.style.display = "none";
-    tooglerText.textContent = "Читать дальше";
-    tooglerIcon.src = "img/ico-arrow-down.svg";
+    details.style.display = 'none';
+    detailsSpan.style.display = 'none';
+    tooglerText.textContent = 'Читать дальше';
+    tooglerIcon.src = 'img/ico-arrow-down.svg';
   }
 
 })
 // КОНЕЦ БЛОКА для отображения и скрытия деталий
+
+// НАЧАЛО БЛОКА для плейсхолдера
+var input = document.querySelector('.form-subscribe__email');
+input.addEventListener('click', function (){
+  input.placeholder = 'Введите email';
+});
+// КОНЕЦ БЛОКА для плейсхолдера
+
 
 // НАЧАЛО БЛОКА для отображения карточек
 //функция для формирования (загрузки) массива с карточками
@@ -49,61 +57,65 @@ var blockForCard = document.querySelector(".sub-section--cards");
 
 var btn = document.querySelector('.sub-section__nav-btn');
 
-var renderCard = function(numberOfCards){
-  for (var j=1; j<=numberOfCards; j++) {
-    var newCard = cardTemplate.cloneNode(true);
-    var newCardTitle = newCard.querySelector('.card__title');
-    newCardTitle.textContent = cards[k-1].title;
-    var newCardText = newCard.querySelector('.card__text');
-    newCardText.textContent = cards[k-1].text;
-    blockForCard.appendChild(newCard);
-  }
+var renderCard = function(k){
+  var newCard = cardTemplate.cloneNode(true);
+  var newCardTitle = newCard.querySelector('.card__title');
+  newCardTitle.textContent = cards[k-1].title;
+  var newCardText = newCard.querySelector('.card__text');
+  newCardText.textContent = cards[k-1].text;
+  blockForCard.appendChild(newCard);
 }
 
+var text = document.querySelector('#text');
 var pages = document.querySelector('#pages');
-var k = 0;
+var k = 2;
 var needToRender = true;
 btn.addEventListener('click', function() {
   k = k + 1;
   switch (k) {
-    case 1:
+    case 3: // превое нажатие, показываем 4 карточки
       pages.textContent = '4 из 7';
       if (needToRender) {
-        renderCard(2);
+        renderCard(k);
+        renderCard(k + 1);
       } else {
         addedCards[0].style.display = 'block';
         addedCards[1].style.display = 'block';
       }
       break;
-    case 2:
+    case 4: // второе нажатие, показываем 6 карточек
       pages.textContent = '6 из 7';
       if (needToRender) {
-        renderCard(2);
+        renderCard(k + 1);
+        renderCard(k + 2);
       } else {
         addedCards[2].style.display = 'block';
         addedCards[3].style.display = 'block';
       }
       break;
-    case 3:
+    case 5: // третье нажатие, показываем 7 карточек
       pages.textContent = '7 из 7';
+      text.textContent = 'Скрыть'
       if (needToRender) {
-        renderCard(1);
+        renderCard(k + 2);
       } else {
         addedCards[4].style.display = 'block';
       }
       break;
   }
 
-  if (k > 3) {
-    k = 0;
+  // если нажали четвёртый раз, значит скрываем все карточки,
+  // которые показали
+  if (k > 5) {
+    k = 2;
     needToRender = false;
     pages.textContent = '2 из 7';
+    text.textContent = 'Посмотреть еще'
     addedCards = document.querySelectorAll('.sub-section__part--added');
-    for (var n=0; n<addedCards.length; n++ ) {
+    for (var n = 0; n < addedCards.length; n++ ) {
       addedCards[n].style.display = 'none';
     }
 
   }
-
-})
-
+});
+// КОНЕЦ БЛОКА для отображения карточек
