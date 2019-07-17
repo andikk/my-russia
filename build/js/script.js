@@ -34,12 +34,22 @@ input.addEventListener('click', function (){
 });
 // КОНЕЦ БЛОКА для плейсхолдера
 
+var sectionsArr = [];
+
+var updatePositions = function () {
+  sectionsArr.length = 0;
+  var sections = document.querySelectorAll(".section__title");
+  sections.forEach( function(section) {
+    sectionsArr.push(section.offsetTop)
+  });
+}
+
 
 // НАЧАЛО БЛОКА для отображения карточек
 //функция для формирования (загрузки) массива с карточками
 var loadData = function () {
   var arrayWithCards = [];
-  for (var i = 1; i <= 7; i++) {
+  for (var i = 3; i <= 8; i++) {
     var cardToAdd = {
       'title': 'Заголовок карточки ' + i,
       'text': 'Текст карточки ' + i
@@ -59,93 +69,81 @@ var btn = document.querySelector('.sub-section__nav-btn');
 var renderCard = function(k){
   var newCard = cardTemplate.cloneNode(true);
   var newCardTitle = newCard.querySelector('.card__title');
-  newCardTitle.textContent = cards[k-1].title;
+  newCardTitle.textContent = cards[k].title;
   var newCardText = newCard.querySelector('.card__text');
-  newCardText.textContent = cards[k-1].text;
+  newCardText.textContent = cards[k].text;
   blockForCard.appendChild(newCard);
 }
 
 var text = document.querySelector('#text');
 var pages = document.querySelector('#pages');
-var k = 2;
 var needToRender = true;
+var totalClicks = cards.length / 2;
+var numberOfClick = 0;
+var numberOfCard = 0;
+
 btn.addEventListener('click', function() {
-  k = k + 1;
-  switch (k) {
-    case 3: // превое нажатие, показываем 4 карточки
-      pages.textContent = '4 из 7';
-      if (needToRender) {
-        renderCard(k);
-        renderCard(k + 1);
-      } else {
-        addedCards[0].style.display = 'block';
-        addedCards[1].style.display = 'block';
-      }
-      break;
-    case 4: // второе нажатие, показываем 6 карточек
-      pages.textContent = '6 из 7';
-      if (needToRender) {
-        renderCard(k + 1);
-        renderCard(k + 2);
-      } else {
-        addedCards[2].style.display = 'block';
-        addedCards[3].style.display = 'block';
-      }
-      break;
-    case 5: // третье нажатие, показываем 7 карточек
-      pages.textContent = '7 из 7';
-      text.textContent = 'Скрыть'
-      if (needToRender) {
-        renderCard(k + 2);
-      } else {
-        addedCards[4].style.display = 'block';
-      }
-      break;
-  }
 
-  // если нажали четвёртый раз, значит скрываем все карточки,
-  // которые показали
-  if (k > 5) {
-    k = 2;
-    needToRender = false;
-    pages.textContent = '2 из 7';
-    text.textContent = 'Посмотреть еще'
-    addedCards = document.querySelectorAll('.sub-section__part--added');
-    for (var n = 0; n < addedCards.length; n++ ) {
-      addedCards[n].style.display = 'none';
+  numberOfClick = numberOfClick + 1;
+
+  if (numberOfClick <= totalClicks) {
+    renderCard(numberOfCard);
+    renderCard(numberOfCard + 1);
+    numberOfCard = numberOfCard + 2;
+    pages.textContent = numberOfCard + 2 + ' из 8';
+
+    if (numberOfClick === totalClicks) {
+      text.textContent = 'Скрыть';
     }
+  } else if (numberOfClick > totalClicks) {
+    addedCards = document.querySelectorAll('.sub-section__part--added');
+    addedCards.forEach(function (card) {
+      card.remove();
+    });
 
+    numberOfClick = 0;
+    numberOfCard = 0
   }
+  updatePositions();
 });
+
+
 // КОНЕЦ БЛОКА для отображения карточек
 
 // НАЧАЛО БЛОКА для подсветки разделов
+updatePositions();
+
 var links = document.querySelectorAll(".left-nav-list__link");
-for (var i = 0; i <= links.length - 1; i++ ) {
+var setLinkActive = function(linkNumberToActive) {
+  for (var i = 0; i <= links.length - 1 ; i++ ) {
+    if (i == linkNumberToActive) {
+      links[i].classList.add('left-nav-list__link--active');
+    } else {
+      links[i].classList.remove('left-nav-list__link--active');
+    }
+  }
+}
+
+for (var i = 0; i < links.length ; i++ ) {
   links[i].addEventListener('click', function () {
     window.onscroll();
   });
 }
 
 window.onscroll = function() {
-  var scrolled = window.pageYOffset;
+  var pos = window.pageYOffset;
+  for (i = 0; i <= links.length - 1; i++ ) {
+    if (i < links.length - 1) {
 
-  if (scrolled >= 0 && scrolled < 1747) {
-    links[0].classList.add('left-nav-list__link--active');
-  } else {
-    links[0].classList.remove('left-nav-list__link--active');
-  }
-
-  if (scrolled > 1740 && scrolled < 2531) {
-    links[1].classList.add('left-nav-list__link--active');
-  } else {
-    links[1].classList.remove('left-nav-list__link--active');
-  }
-
-  if (scrolled >= 2531) {
-    links[2].classList.add('left-nav-list__link--active');
-  } else {
-    links[2].classList.remove('left-nav-list__link--active');
+      if ((pos >= sectionsArr[i]) && (pos < sectionsArr[i + 1])) {
+        setLinkActive(i);
+      }
+    } else if ( i = links.length - 1) {
+      if (pos >= sectionsArr[i]) {
+        setLinkActive(i);
+      }
+    }
   }
 }
+
 // КОНЕЦ БЛОКА для подсветки разделов
